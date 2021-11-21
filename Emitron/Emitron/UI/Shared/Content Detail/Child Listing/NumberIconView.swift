@@ -55,5 +55,7 @@ struct NumberIconView_Previews: PreviewProvider {
       NumberIconView(number: 4)
       NumberIconView(number: 5)
     }
+    .padding()
+    .previewLayout(.sizeThatFits)
   }
 }

@@ -47,5 +47,7 @@ struct CompletedIconView: View {
 struct CompletedIconView_Previews: PreviewProvider {
   static var previews: some View {
     CompletedIconView()
+      .padding()
+      .previewLayout(.sizeThatFits)
   }
 }

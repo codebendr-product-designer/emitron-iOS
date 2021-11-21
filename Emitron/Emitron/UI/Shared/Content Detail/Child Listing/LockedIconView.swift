@@ -45,5 +45,7 @@ struct LockedIconView_Previews: PreviewProvider {
       .padding()
       .background(Color.background)
       .inAllColorSchemes
+      .padding()
+      .previewLayout(.sizeThatFits)
   }
 }
