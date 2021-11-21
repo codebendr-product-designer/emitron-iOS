@@ -18,5 +18,9 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+  <key>SSO_SECRET</key>
+  <string>155bdf4d4f847e77aec11624ab9c17b4</string>
+  <key>APP_TOKEN</key>
+  <string></string>
 </dict>
 </plist>
