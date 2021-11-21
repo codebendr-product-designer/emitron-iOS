@@ -129,5 +129,6 @@ struct PrimaryButtonView_Previews: PreviewProvider {
       .padding(20)
       .background(Color.background)
       .inAllColorSchemes
+      .previewLayout(.sizeThatFits)
   }
 }
