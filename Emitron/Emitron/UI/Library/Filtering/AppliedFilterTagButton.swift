@@ -121,5 +121,6 @@ struct AppliedFilterView_Previews: PreviewProvider {
     .padding()
     .background(Color.background)
     .inAllColorSchemes
+    .previewLayout(.sizeThatFits)
   }
 }

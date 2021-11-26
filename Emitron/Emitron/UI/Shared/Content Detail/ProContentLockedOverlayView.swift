@@ -53,5 +53,7 @@ struct ProContentLockedOverlayView: View {
 struct ProContentLockedOverlayView_Previews: PreviewProvider {
   static var previews: some View {
     ProContentLockedOverlayView()
+      .padding()
+      .previewLayout(.sizeThatFits)
   }
 }

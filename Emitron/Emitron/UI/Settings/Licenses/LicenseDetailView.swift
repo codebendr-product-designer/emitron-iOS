@@ -56,6 +56,8 @@ struct LicenseDetailView_Previews: PreviewProvider {
   static let license = FossLicense.load().first!
   
   static var previews: some View {
-    LicenseDetailView(license: license).inAllColorSchemes
+    LicenseDetailView(license: license)
+      .inAllColorSchemes
+      .previewLayout(.sizeThatFits)
   }
 }

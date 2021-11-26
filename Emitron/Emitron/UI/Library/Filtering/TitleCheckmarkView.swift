@@ -64,5 +64,7 @@ struct FilterView_Previews: PreviewProvider {
     TitleCheckmarkView(name: "Turned...", isOn: Filter.testFilter.isOn, onChange: { isOn in
       print("On state changed to: \(isOn)")
     })
+      .padding()
+      .previewLayout(.sizeThatFits)
   }
 }

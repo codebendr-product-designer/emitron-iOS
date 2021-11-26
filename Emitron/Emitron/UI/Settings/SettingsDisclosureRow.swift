@@ -63,5 +63,6 @@ struct SettingsDisclosureRow_Previews: PreviewProvider {
       .padding()
       .background(Color.background)
       .inAllColorSchemes
+      .previewLayout(.sizeThatFits)
   }
 }

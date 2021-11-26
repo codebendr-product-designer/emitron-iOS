@@ -71,5 +71,7 @@ struct MessageBarView_Previews: PreviewProvider {
       }
       MessageBarView(messageBus: messageBus)
     }
+    .padding()
+    .previewLayout(.sizeThatFits)
   }
 }

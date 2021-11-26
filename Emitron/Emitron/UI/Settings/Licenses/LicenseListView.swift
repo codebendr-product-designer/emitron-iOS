@@ -71,5 +71,6 @@ struct LicenseListView_Previews: PreviewProvider {
   static var previews: some View {
     LicenseListView(licenses: FossLicense.load(), visible: $visible)
       .inAllColorSchemes
+      .previewLayout(.sizeThatFits)
   }
 }

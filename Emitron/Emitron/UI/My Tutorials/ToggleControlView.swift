@@ -83,5 +83,6 @@ struct ToggleControlView_Previews: PreviewProvider {
     .padding([.horizontal], 10)
     .background(Color.background)
     .inAllColorSchemes
+    .previewLayout(.sizeThatFits)
   }
 }

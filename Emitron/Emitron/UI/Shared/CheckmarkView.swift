@@ -77,5 +77,7 @@ struct CheckmarkView_Previews: PreviewProvider {
     CheckmarkView(isOn: true) { change in
       print("Changed to: \(change)")
     }
+    .padding()
+    .previewLayout(.sizeThatFits)
   }
 }

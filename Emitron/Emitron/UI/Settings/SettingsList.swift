@@ -50,6 +50,7 @@ struct SettingsList_Previews: PreviewProvider {
     )
       .background(Color.background)
       .inAllColorSchemes
+      .previewLayout(.sizeThatFits)
   }
 }
 

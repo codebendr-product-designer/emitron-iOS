@@ -101,5 +101,6 @@ struct SpinningCircleView_Previews: PreviewProvider {
       .padding()
       .background(Color.background)
       .inAllColorSchemes
+      .previewLayout(.sizeThatFits)
   }
 }

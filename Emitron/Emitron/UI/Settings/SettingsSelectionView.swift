@@ -81,5 +81,6 @@ struct SettingsSelectionView_Previews: PreviewProvider {
     .padding()
     .background(Color.background)
     .inAllColorSchemes
+    .previewLayout(.sizeThatFits)
   }
 }

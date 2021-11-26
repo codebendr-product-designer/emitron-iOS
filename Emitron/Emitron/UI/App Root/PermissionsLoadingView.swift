@@ -50,5 +50,7 @@ struct PermissionsLoadingView: View {
 struct PermissionsLoadingView_Previews: PreviewProvider {
   static var previews: some View {
     PermissionsLoadingView()
+      .padding()
+      .previewLayout(.sizeThatFits)
   }
 }

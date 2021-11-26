@@ -89,5 +89,7 @@ struct SnackbarView_Previews: PreviewProvider {
       SnackbarView(state: SnackbarState(status: .warning, message: "We're going orange."), visible: $visible)
       SnackbarView(state: SnackbarState(status: .success, message: "Everything looks peachy."), visible: $visible)
     }
+    .padding()
+    .previewLayout(.sizeThatFits)
   }
 }
