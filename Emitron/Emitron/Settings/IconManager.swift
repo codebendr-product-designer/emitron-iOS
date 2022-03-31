@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Razeware LLC
+// Copyright (c) 2022 Razeware LLC
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -46,7 +46,7 @@ class IconManager: ObservableObject {
       DispatchQueue.main.async { 
         if let error = error {
           Failure
-            .appIcon(from: String(describing: type(of: self)), reason: error.localizedDescription)
+            .appIcon(from: Self.self, reason: error.localizedDescription)
             .log()
           self.messageBus.post(message: Message(level: .error, message: .appIconUpdateProblem))
         } else {

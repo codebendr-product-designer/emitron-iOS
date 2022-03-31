@@ -1,4 +1,4 @@
-// Copyright (c) 2019 Razeware LLC
+// Copyright (c) 2022 Razeware LLC
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -49,26 +49,11 @@ struct Download: Codable {
   var remoteURL: URL?
   var progress: Double = 0
   var state: State
-  var contentId: Int
+  var contentID: Int
   var ordinal: Int = 0 // We copy this from the Content, and it is used to sort the queue
   
   var localURL: URL? {
-    guard let fileName = fileName,
-      let downloadDirectory = Download.downloadDirectory else {
-        return nil
-    }
-    
-    return downloadDirectory.appendingPathComponent(fileName)
-  }
-  
-  static var downloadDirectory: URL? {
-    let fileManager = FileManager.default
-    let documentsDirectories = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-    guard let documentsDirectory = documentsDirectories.first else {
-      return nil
-    }
-    
-    return documentsDirectory.appendingPathComponent("downloads", isDirectory: true)
+    fileName.map(URL.downloadsDirectory.appendingPathComponent)
   }
 }
 
@@ -82,7 +67,7 @@ extension Download: Equatable {
       lhs.remoteURL == rhs.remoteURL &&
       lhs.progress == rhs.progress &&
       lhs.state == rhs.state &&
-      lhs.contentId == rhs.contentId &&
+      lhs.contentID == rhs.contentID &&
       lhs.ordinal == rhs.ordinal &&
       lhs.requestedAt.equalEnough(to: rhs.requestedAt) &&
       ((lhs.lastValidatedAt == nil && rhs.lastValidatedAt == nil) || lhs.lastValidatedAt!.equalEnough(to: rhs.lastValidatedAt!))
@@ -93,13 +78,13 @@ extension Download {
   static func create(for content: Content) -> Download {
     Download(
       id: UUID(),
-      requestedAt: Date(),
+      requestedAt: .now,
       lastValidatedAt: nil,
       fileName: nil,
       remoteURL: nil,
       progress: 0,
       state: .pending,
-      contentId: content.id,
+      contentID: content.id,
       ordinal: content.ordinal ?? 0)
   }
 }

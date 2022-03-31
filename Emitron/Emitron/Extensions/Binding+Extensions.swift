@@ -26,13 +26,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-protocol SettingsSelectable: Hashable {
-  static var selectableCases: [Self] { get }
-  var display: String { get }
-}
+import struct SwiftUI.Binding
 
-extension SettingsSelectable {
-  func hash(into hasher: inout Hasher) {
-    hasher.combine(display)
+public extension Binding where Value == Bool {
+  // swiftlint:disable:next operator_whitespace
+  prefix static func !(binding: Self) -> Self {
+    .init(
+      get: { !binding.wrappedValue },
+      set: { binding.wrappedValue = !$0 }
+    )
   }
 }

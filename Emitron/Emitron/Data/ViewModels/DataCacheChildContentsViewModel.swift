@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Razeware LLC
+// Copyright (c) 2022 Razeware LLC
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -29,32 +29,36 @@
 final class DataCacheChildContentsViewModel: ChildContentsViewModel {
   private let service: ContentsService
 
-  init(parentContentId: Int,
-       downloadAction: DownloadAction,
-       syncAction: SyncAction?,
-       repository: Repository,
-       service: ContentsService,
-       messageBus: MessageBus,
-       settingsManager: SettingsManager,
-       sessionController: SessionController) {
+  init(
+    parentContentID: Int,
+    downloadAction: DownloadAction,
+    syncAction: SyncAction?,
+    repository: Repository,
+    service: ContentsService,
+    messageBus: MessageBus,
+    settingsManager: SettingsManager,
+    sessionController: SessionController
+  ) {
     self.service = service
-    super.init(parentContentId: parentContentId,
-               downloadAction: downloadAction,
-               syncAction: syncAction,
-               repository: repository,
-               messageBus: messageBus,
-               settingsManager: settingsManager,
-               sessionController: sessionController)
+    super.init(
+      parentContentID: parentContentID,
+      downloadAction: downloadAction,
+      syncAction: syncAction,
+      repository: repository,
+      messageBus: messageBus,
+      settingsManager: settingsManager,
+      sessionController: sessionController
+    )
   }
   
   override func loadContentDetailsIntoCache() {
     state = .loading
-    service.contentDetails(for: parentContentId) { result in
+    service.contentDetails(for: parentContentID) { result in
       switch result {
       case .failure(let error):
         self.state = .failed
         Failure
-          .fetch(from: String(describing: type(of: self)), reason: error.localizedDescription)
+          .fetch(from: Self.self, reason: error.localizedDescription)
           .log()
       case .success(let (_, cacheUpdate)):
         self.repository.apply(update: cacheUpdate)

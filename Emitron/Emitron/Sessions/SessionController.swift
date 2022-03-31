@@ -1,4 +1,4 @@
-// Copyright (c) 2019 Razeware LLC
+// Copyright (c) 2022 Razeware LLC
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -97,9 +97,11 @@ final class SessionController: NSObject, UserModelController, ObservablePrePostF
   var hasCurrentDownloadPermissions: Bool {
     guard user?.canDownload == true else { return false }
     
-    if case .loaded(let date) = permissionState,
+    if
+      case .loaded(let date) = permissionState,
       let permissionsLastConfirmedDate = date,
-      Date().timeIntervalSince(permissionsLastConfirmedDate) < .videoPlaybackOfflinePermissionsCheckPeriod {
+      Date.now.timeIntervalSince(permissionsLastConfirmedDate) < .videoPlaybackOfflinePermissionsCheckPeriod
+    {
       return true
     }
     return false
@@ -142,12 +144,12 @@ final class SessionController: NSObject, UserModelController, ObservablePrePostF
             self.permissionState = .notLoaded
 
             Failure
-              .login(from: "SessionController", reason: error.localizedDescription)
+              .login(from: Self.self, reason: error.localizedDescription)
               .log()
           case .success(let user):
             self.user = user
             Event
-              .login(from: "SessionController")
+              .login(from: Self.self)
               .log()
             self.fetchPermissions()
           }
@@ -181,8 +183,9 @@ final class SessionController: NSObject, UserModelController, ObservablePrePostF
       DispatchQueue.main.async {
         switch result {
         case .failure(let error):
+          enum Permissions {}
           Failure
-            .fetch(from: "SessionController_Permissions", reason: error.localizedDescription)
+            .fetch(from: Permissions.self, reason: error.localizedDescription)
             .log()
           
           self.permissionState = .error
